@@ -10,9 +10,8 @@ import validate from "./secure_send";
 import cookieParser from "cookie-parser";
 import axios from "axios";
 import crypto, { hash } from "crypto";
-import { dbConnect, sendToDatabase, getUser, connectWithJWT } from "./db";
+import { dbConnect, registerUserToDB, getUser, connectWithJWT } from "./db";
 import "./secure_token";
-import { connect } from "http2";
 
 
 const csrfTokens = new Map<string, { token: string, timestamp: number }>();
@@ -79,7 +78,7 @@ app.post("/signUp", validate([
         return res.status(403).json({ message: "Invalid CSRF token" });
 
     const hashedPassword = await hashPassword(password);
-    const token = sendToDatabase(username, hashedPassword);
+    const token = registerUserToDB(username, hashedPassword);
 
     res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "strict", maxAge: 24 * 60 * 60 * 1000});
     res.status(200).json({ message: "User registered successfully" });

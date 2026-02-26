@@ -8,7 +8,7 @@ Be carefull with the password you have to type it during installation (if you wa
 
 # Init db and create db postgres 18
 
-Official documentiation is [here]("https://www.postgresql.org/docs/18/")
+Official documentiation is [here](https://www.postgresql.org/docs/18/)
 Your bdd path with configuration are here : C:\Program Files\PostgreSQL\18\data by default 
 
 create databbase

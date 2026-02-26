@@ -23,7 +23,7 @@ function dbConnect(): void {
         });
 }
 
-async function sendToDatabase(username: string, password: string): Promise<string> {
+async function registerUserToDB(username: string, password: string): Promise<string> {
     const {PreparedStatement: PS} = require('pg-promise');
     const userId = Math.floor((Math.random() * 1000000) + (Math.random() * 10000));
     await db.query(`SET app.current_user_id = $1`, [userId]);
@@ -77,9 +77,9 @@ async function connectWithJWT(token: string): Promise<boolean> {
         return false;
     console.log("Token payload: ", payload);
     const {PreparedStatement: PS} = require('pg-promise');
-    const getUser = new PS({name: 'get-user-id', text: 'select * FROM Users WHERE user_id = $1'});
+    await db.query(`SET app.current_user_id = $1`, [payload.user_id]);
+    const getUser = new PS({name: 'get-user-id', text: 'select * FROM Users'});
 
-    getUser.values = [payload.user_id];
     console.log("Verifying token for user_id: ", payload.user_id);
     await db.one(getUser)
         .then((data: any) => {
@@ -93,4 +93,4 @@ async function connectWithJWT(token: string): Promise<boolean> {
     return true;
 }
 
-export { dbConnect, sendToDatabase, getUser, connectWithJWT };
+export { dbConnect, registerUserToDB, getUser, connectWithJWT };
