@@ -41,7 +41,7 @@ Add everything from postgre and a key for JWT_SECRET_KEY
 
 # Launch app
 
-replace signIn by signUp in file index ![index][./img/screen1.png]
+replace signIn by signUp in file index ![index](./img/screen1.png)
 
 ```sh
 npm i
