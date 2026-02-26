@@ -1,6 +1,6 @@
 # Install postgre
 
-In this [url]("https://www.enterprisedb.com/downloads/postgres-postgresql-downloads") choose the good version
+In this [url](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) choose the good version
 
 Go to the version for me i've installed the version 18 so the bin folder is in : C:\Program Files\PostgreSQL\18\bin
 Add this folder to system path.
@@ -37,7 +37,7 @@ openssl rand -base64 32
 
 # Rename .env-test file .env file
 
-Add everything from postgre and a key for ACCESS_TOKEN_SECRET_KEY
+Add everything from postgre and a key for JWT_SECRET_KEY
 
 # Launch app
 
