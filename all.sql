@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Sess (
 );
 
 -- Activer RLS
-ALTER TABLE Users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE Users FORCE ROW LEVEL SECURITY;
 
 -- Politique SELECT : chaque utilisateur voit ses propres données
 CREATE POLICY utilisateur_select ON Users
