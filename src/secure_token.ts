@@ -7,18 +7,17 @@ const generateToken = (payload: object, expiresIn: string | number = "1h") => {
 };
 
 const verifyToken = (token: string) => {
-    jwt.verify(token, secretKey, { algorithms: ['HS384'] }, function (err, payload) {
+    let payload: any = null;
+    jwt.verify(token, secretKey, { algorithms: ['HS384'] }, function (err, data) {
         if (err)
-        {
             console.log("Token verification failed: ", err);
-            return null;
-        }
         else
         {
-            console.log("Token is valid. Payload: ", payload);
-            return payload;
+            console.log("Token is valid. Payload: ", data);
+            payload = data;
         } 
     });
+    return payload;
 }
 
 export { generateToken, verifyToken };
